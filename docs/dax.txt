@@ -1,0 +1,66 @@
+Dim_date = ADDCOLUMNS ( CALENDARAUTO (),
+    "DateID", VALUE(FORMAT([Date], "YYYYMMDD")),
+	"Year", YEAR([Date]), 
+	"MonthNo", MONTH([Date]), 
+	"Month", FORMAT([Date],"mmm"),
+	"Quarter", FORMAT([Date],"\QQ"),
+    "YearMonth", FORMAT([Date],"YYYY-MM"), 
+	"WeekdayNo", WEEKDAY([Date],2), //1-Sun..Sat, 2-Mon..Sat
+	"Weekday", FORMAT([Date],"ddd") )
+
+Avg Operating Margin = AVERAGE('Fact_Ventes'[Operating Margin])
+Avg Price = AVERAGE('Fact_Ventes'[Price per Unit])
+Profit = SUM('Fact_Ventes'[Operating Profit])
+Total Units Sold = SUM('Fact_Ventes'[Units Sold])
+Total_Sales = SUM('Fact_Ventes'[Total Sales])
+Trans count = COUNTROWS('Fact_Ventes')
+ProfitYTD = CALCULATE([Profit],DATESYTD('Dim_date'[Date]))
+SalesYTD = CALCULATE([Total_Sales],DATESYTD('Dim_date'[Date]))
+
+ProfitMOM = 
+VAR PM = CALCULATE([Profit],DATEADD('Dim_date'[Date],-1,MONTH))
+VAR CM = [Profit]
+RETURN
+IF(AND(CM,PM),CM/PM-1)
+
+ProfitYOY = 
+VAR PM = CALCULATE([Profit],DATEADD('Dim_date'[Date],-1,year))
+VAR CM = [Profit]
+RETURN
+IF(AND(CM,PM),CM/PM-1)
+
+SalesMOM = 
+VAR PM = CALCULATE([Total_Sales],DATEADD('Dim_date'[Date],-1,MONTH))
+VAR CM = [Total_Sales]
+RETURN
+IF(AND(CM,PM),CM/PM-1)
+
+SalesYOY = 
+VAR PM = CALCULATE([Total_Sales],DATEADD('Dim_date'[Date],-1,YEAR))
+VAR CM = [Total_Sales]
+RETURN
+IF(AND(CM,PM),CM/PM-1)
+
+TransCountMOM = 
+VAR PM = CALCULATE([Trans count],DATEADD('Dim_date'[Date],-1,MONTH))
+VAR CM = [Trans count]
+RETURN
+IF(AND(CM,PM),CM/PM-1)
+
+TransCountYOY = 
+VAR PM = CALCULATE([Trans count],DATEADD('Dim_date'[Date],-1,YEAR))
+VAR CM = [Trans count]
+RETURN
+IF(AND(CM,PM),CM/PM-1)
+
+UnitsSoldMOM = 
+VAR PM = CALCULATE([Total Units Sold],DATEADD('Dim_date'[Date],-1,MONTH))
+VAR CM = [Total Units Sold]
+RETURN
+IF(AND(CM,PM),CM/PM-1)
+
+UnitsSoldYOY = 
+VAR PM = CALCULATE([Total Units Sold],DATEADD('Dim_date'[Date],-1,YEAR))
+VAR CM = [Total Units Sold]
+RETURN
+IF(AND(CM,PM),CM/PM-1)

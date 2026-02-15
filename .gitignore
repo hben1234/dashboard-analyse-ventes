@@ -1,0 +1,4 @@
+*.pbix.temp
+*.lock
+~$*
+.DS_Store
