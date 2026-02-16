@@ -8,7 +8,7 @@ Ce projet est une solution décisionnelle complète (Business Intelligence) visa
 **Problématique :** Comment optimiser la stratégie de vente et identifier les segments les plus rentables à partir de millions de lignes de données transactionnelles ?
 
 ## Aperçu du Tableau de Bord
-![Dashboard Preview](screenshots/dashboard_preview.png)
+![Dashboard Preview](Screenshots/dashboard_preview.png)
 
 
 ## Méthodologie & Stack Technique
@@ -32,4 +32,5 @@ Ce projet est une solution décisionnelle complète (Business Intelligence) visa
 1. Téléchargez le fichier `Adidas_Sales_Analysis.pbix` dans le dossier `/dashboard`.
 2. Ouvrez-le avec **Power BI Desktop**.
 3. Explorez les différents onglets du rapport.
+
 
